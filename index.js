@@ -12,6 +12,7 @@ module.exports = function(source) {
     var moduleName;
     var standalone;
     var env;
+    var config;
     try {
         data = JSON.parse(source);
     } catch (e) {
@@ -29,9 +30,10 @@ module.exports = function(source) {
     output = '"use strict";export default angular.module("' + moduleName + '"' + (standalone ? ', []' : '') + ')';
     for (i in constantNames) {
         if (env === constantNames[i]) {
-            for (j in  constantNames[i]) {
-                output += '\n  .constant("' + constantNames[i][j] + '", ';
-                output += JSON.stringify(data[constantNames[i][j]]);
+            config = Object.keys(constantNames[i]);
+            for (j in  config) {
+                output += '\n  .constant("' + config[j] + '", ';
+                output += JSON.stringify(data[config[j]]);
                 output += ')';
             }
         }
