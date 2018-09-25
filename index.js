@@ -30,8 +30,8 @@ module.exports = function(source) {
     for (i in constantNames) {
         if (env === constantNames[i]) {
             for (j in  constantNames[i]) {
-                output += '\n  .constant("' + constantNames[j] + '", ';
-                output += JSON.stringify(data[constantNames[j]]);
+                output += '\n  .constant("' + constantNames[i][j] + '", ';
+                output += JSON.stringify(data[constantNames[i][j]]);
                 output += ')';
             }
         }
