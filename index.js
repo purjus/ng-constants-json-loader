@@ -31,7 +31,7 @@ module.exports = function(source) {
     for (i in constantNames) {
         if (env === constantNames[i]) {
             for (j in  data[constantNames[i]]) {
-                output += '\n  .constant("' + "config" + '", ';
+                output += '\n  .constant("' + j + '", ';
                 output += JSON.stringify(data[constantNames[i]][j]);
                 output += ')';
             }
