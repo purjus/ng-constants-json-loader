@@ -7,7 +7,7 @@
 module.exports = function(source) {
     var data;
     var constantNames;
-    var i;
+    var i,j;
     var output;
     var moduleName;
     var standalone;
@@ -29,9 +29,11 @@ module.exports = function(source) {
     output = '"use strict";export default angular.module("' + moduleName + '"' + (standalone ? ', []' : '') + ')';
     for (i in constantNames) {
         if (env === constantNames[i]) {
-            output += '\n  .constant("' + constantNames[i][env] + '", ';
-            output += JSON.stringify(data[constantNames[i][env]]);
-            output += ')';
+            for (j in  constantNames[i]) {
+                output += '\n  .constant("' + constantNames[j].env + '", ';
+                output += JSON.stringify(data[constantNames[j].env]);
+                output += ')';
+            }
         }
     }
 
