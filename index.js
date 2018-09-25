@@ -30,7 +30,7 @@ module.exports = function(source) {
     output = '"use strict";export default angular.module("' + moduleName + '"' + (standalone ? ', []' : '') + ')';
     for (i in constantNames) {
         if (env === constantNames[i]) {
-            config = Object.keys(JSON.parse(constantNames[i]));
+            config = Object.keys(JSON.parse("{"+constantNames[i])+"}");
             for (j in  config) {
                 output += '\n  .constant("' + config[j] + '", ';
                 output += JSON.stringify(data[config[j]]);
