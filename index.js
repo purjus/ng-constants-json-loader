@@ -29,8 +29,8 @@ module.exports = function(source) {
     output = '"use strict";export default angular.module("' + moduleName + '"' + (standalone ? ', []' : '') + ')';
     for (i in constantNames) {
         if (env === constantNames[i]) {
-            output += '\n  .constant("' + constantNames[i][0] + '", ';
-            output += JSON.stringify(data[constantNames[i][0]]);
+            output += '\n  .constant("' + constantNames[i][env] + '", ';
+            output += JSON.stringify(data[constantNames[i][env]]);
             output += ')';
         }
     }
